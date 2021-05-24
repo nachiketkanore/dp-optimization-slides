@@ -51,7 +51,7 @@ helps to effectively communicate and perform Python programming tasks! 🚀
 # Hello World with Highlighting
 
 ```python {all|1|2-5|6|7-8|all}
-# illustrates a comment
+# declare multiple variables
 hello = "hello"
 world = "world"
 space = " "
@@ -79,10 +79,11 @@ What is the purpose of <code>f"The message is: {message}"</code> ?
 
 ---
 
-# Code Slide Again
+# Using a <code class="tight">mapper</code> with a Sequence
 
-```python
-@annotation
+<br>
+
+```python{all|1-3|4-9|10-12|all}
 def square(value: int):
     return value * value
 
