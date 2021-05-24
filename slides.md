@@ -2,12 +2,11 @@
 theme: ./simple
 class: text-center
 highlighter: prism
+colorSchema: 'light'
 download: true
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+  ## Simple-slidev-sample 
+  Simple Slidev Sample
 ---
 
 # Simple Slidev Sample
@@ -137,6 +136,7 @@ p {
 }
 </style>
 
+<!--- Display all equations at the same time -->
 
 $$O = ((o_1, \ldots, o_n))$$
 
@@ -151,6 +151,36 @@ Where does this exist in Python code?
 <p class = "bold">
 Explore the use of the <code>sum</code> function in Python!
 </p>
+
+---
+
+# Average Computation with Multisets
+
+<style>
+p {
+  font-size: 25px;
+}
+</style>
+
+<!--- Display each equation separately -->
+
+<v-clicks>
+
+$$O = ((o_1, \ldots, o_n))$$
+
+$$S = \sum_{o_i \in O} o_i$$
+
+$$A = \frac{S}{|O|}$$
+
+What is the meaning of $o_i \in O$?
+
+Where does this exist in Python code?
+
+<p class = "bold">
+Explore the use of the <code>sum</code> function in Python!
+</p>
+
+</v-clicks>
 
 ---
 
