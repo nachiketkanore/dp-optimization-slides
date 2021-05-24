@@ -79,7 +79,7 @@ What is the purpose of <code>f"The message is: {message}"</code> ?
 
 ---
 
-# Using a <code class="tight">mapper</code> with a Sequence
+# Using a <code>mapper</code> with a Sequence
 
 <br>
 
@@ -129,6 +129,31 @@ operator $\otimes$ that satisfies the following conditions:
 monoid --- "monoid" describes "string-like" structures!
 
 </v-clicks>
+
+---
+
+# Average Computation with Multisets
+
+<style>
+p {
+  font-size: 25px;
+}
+</style>
+
+
+$$O = ((o_1, \ldots, o_n))$$
+
+$$S = \sum_{o_i \in O} o_i$$
+
+$$A = \frac{S}{|O|}$$
+
+What is the meaning of $o_i \in O$?
+
+Where does this exist in Python code?
+
+<p class = "bold">
+Explore the use of the <code>sum</code> function in Python!
+</p>
 
 ---
 
