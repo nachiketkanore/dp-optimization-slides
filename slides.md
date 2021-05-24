@@ -98,9 +98,6 @@ print(squared_range)
 
 ```
 
-<style>
-</style>
-
 ---
 
 # Understanding the Monoid
@@ -126,7 +123,7 @@ operator $\otimes$ that satisfies the following conditions:
 -   If this is confusing, a monoid is a generalization of strings and integers!
 
 -   If you know how strings behave in Python or Java then you understand the
-monoid --- "monoid" describes "string-like" structures!
+monoid --- monoid describes <q>string-like</q> structures!
 
 </v-clicks>
 
@@ -154,6 +151,27 @@ Where does this exist in Python code?
 <p class = "bold">
 Explore the use of the <code>sum</code> function in Python!
 </p>
+
+---
+
+# Summary of the <q>Abstraction Jumping</q>
+
+-   What is the connection between the discrete mathematical structures
+    and the Python programs?
+
+-   Connections between discrete mathematics and Python
+
+    -   **Generic file**: a sequence of sequences
+
+    -   **Names in the file**: a set of strings
+
+    -   **Emails in the file**: a set of ordered pairs forming a
+        relation
+
+    -   **Temperatures in the file**: a multiset of integers
+
+-   When might the emails in the file be a mapping? When might the
+    temperatures in the file be a sequence?
 
 ---
 
