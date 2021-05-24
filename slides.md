@@ -27,39 +27,14 @@ info: |
   <carbon-logo-github />
 </a>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
 ---
 
-# What is Slidev?
+# Technical Question
 
-## Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-The variable <pre>f</pre> a variable in this bulleted list
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on awebpage
-- <pre>f</pre> is a variable in this bulleted list
-
-<pre>f</pre> is a variable in this bulleted list
-
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
+> How do I connect mathematical terminology (e.g., *mapping*, *function*,
+> *number*, *sequence*, and *set*), to the implementation of Python
+> programs that declare and call functions and declare and manipulate
+> variables?
 
 ---
 
