@@ -31,10 +31,21 @@ info: |
 
 # Technical Question
 
+<br>
+<br>
+
 > How do I connect mathematical terminology (e.g., *mapping*, *function*,
 > *number*, *sequence*, and *set*), to the implementation of Python
 > programs that declare and call functions and declare and manipulate
 > variables?
+
+<div class="absolute top-80 -left-10 px-40 text-center">
+
+Let's learn more about how the use of precise mathematical terms and
+concepts helps to effectively communicate and perform programming tasks!
+
+</div>
+
 
 ---
 
