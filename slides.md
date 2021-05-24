@@ -41,28 +41,41 @@ info: |
 
 <div class="absolute top-80 -left-10 px-40 text-center">
 
-Let's learn more about how the use of precise mathematical terms and
-concepts helps to effectively communicate and perform programming tasks!
+Let's learn more about how the use of precise mathematical terms and concepts
+helps to effectively communicate and perform Python programming tasks! 🚀
 
 </div>
 
-
 ---
 
-# Code Slide
+# Hello World with Highlighting
 
-```python {all|2-3|5|all}
-# this is a comment
+```python {all|1|2-5|6|7-8|all}
+# illustrates a comment
 hello = "hello"
 world = "world"
 space = " "
 value = .50
 message = world + space + hello
 print(f"The message is: {message}")
+print(f"The value is: {value}")
 ```
 
-<style>
-</style>
+<v-clicks>
+
+<div class="absolute top-100 text-5xl font-extrabold bold-text">
+
+<p class = "bold">
+  Can you predict the output of this program?
+</p>
+
+<p class = "bold">
+What is the purpose of <code>f"The message is: {message}"</code> ?
+</p>
+
+</div>
+
+</v-clicks>
 
 ---
 
