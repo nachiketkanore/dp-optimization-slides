@@ -63,16 +63,11 @@ pre[class*='language-'] {
   @apply p-2;
 }
 
-.tight {
-  @apply font-light py-0.15 px-2 rounded border-dark-100 border-1 divide-x-5;
-}
-
 :not(pre) > code {
   font-size: 1.9em;
   background: var(--prism-background);
-  @apply font-light py-0.5 px-0.5 rounded border-dark-100 border-1 divide-x-5;
+  @apply font-light py-0.10 px-2.5 rounded border-dark-100 border-2;
 }
-
 
 :not(pre) > code:before,
 :not(pre) > code:after {
@@ -80,10 +75,10 @@ pre[class*='language-'] {
   opacity: 0.50;
 }
 
-:not(pre) > code:before {
-  margin-left: .25em;
-  margin-right: -0.08em;
-}
+/* :not(pre) > code:before { */
+/*   margin-left: .05em; */
+/*   margin-right: .15em; */
+/* } */
 
 .token.important {
   color: var(--prism-important);
