@@ -103,13 +103,12 @@ print(squared_range)
 
 ---
 
-# New Slide Again
+# Understanding the Monoid
 
 <v-clicks>
 
 - A monoid is an ordered pair $(S, \otimes)$ for a set $S$ and any binary
 operator $\otimes$ that satisfies the following conditions:
-
 
     - **Type Preservation**: $\forall s_1, s_2 \in S$, $s_1 \otimes
                   s_2 \in S$
@@ -121,11 +120,13 @@ operator $\otimes$ that satisfies the following conditions:
         $\forall s \in S, \epsilon \otimes s = s$ and
         $s \otimes \epsilon = s$
 
--   We often say that "$S$ is a monoid under $\otimes$ with identity
-    $\epsilon$"
+-   We often say that $S$ is a monoid under $\otimes$ with identity
+    $\epsilon$
 
--   If you know how strings behave then you understand the monoid;
-"monoid" describes "string-like" structures
+-   If this is confusing, a monoid is a generalization of strings and integers!
+
+-   If you know how strings behave in Python or Java then you understand the
+monoid --- "monoid" describes "string-like" structures!
 
 </v-clicks>
 
