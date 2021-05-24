@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev --open",
+    "eject": "slidev theme eject",
     "build": "slidev build",
     "export": "slidev export"
   },
