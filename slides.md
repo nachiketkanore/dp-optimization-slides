@@ -290,7 +290,7 @@ graph LR
 
 ---
 
-# Separate Diagram Slide
+# Additional Diagram Slide
 
 <div class="absolute top-30 left-40">
 
