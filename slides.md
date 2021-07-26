@@ -5,7 +5,7 @@ highlighter: prism
 colorSchema: 'light'
 download: true
 info: |
-  ## Simple-slidev-sample 
+  ## Simple-slidev-sample
   Simple Slidev Sample
 ---
 
@@ -256,15 +256,7 @@ C -->|Two| E[Result 2]
 
 ---
 
-# Another exciting slide
-
-<AutoFitText :max="80" :min="100" modelValue="How did I meet Mathew?"/>
-
----
-class: center
----
-
-# Another exciting slide
+# Sample Diagrams in Mermaid
 
 <div class="grid grid-cols-2 gap-x-1">
 
@@ -321,7 +313,7 @@ graph LR
 
 ---
 
-# Separate Diagram Slide AGAIN!
+# Separate Diagram Slide Again
 
 <div class="container mx-auto px-25 py-5">
 
@@ -344,7 +336,7 @@ graph LR
 
 ---
 
-# Separate Diagram Slide LAST
+# Separate Diagram Slide Last
 
 <div class="absolute top-30 left-40">
 
@@ -364,4 +356,3 @@ graph LR
 - What happens when I am typing a long message and I see some $f(x)$
 
 </div>
-
