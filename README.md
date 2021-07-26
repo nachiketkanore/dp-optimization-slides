@@ -1,11 +1,13 @@
 # simple-slidev-sample
 
+![](../../workflows/build/badge.svg) ![](../../workflows/release/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/5dddd2ae-56ca-4047-a4f7-147059bb96f7/deploy-status)](https://app.netlify.com/sites/pyohio2021-presentation/deploys)
+
 ## Introduction
 
 Sample slides created by [Gregory M.
 Kapfhammer](https://www.gregorykapfhammer.com/) to illustrate the use of
 Slidev's features. These slides were created from other slides, that I used for
-teaching, that were created with LaTeX and Beamer.
+teaching and research, that were created with tools like LaTeX and Beamer.
 
 ## Commands
 
