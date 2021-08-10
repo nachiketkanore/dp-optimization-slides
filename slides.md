@@ -283,7 +283,6 @@ graph LR
     A --> C
     D --> C
     classDef someclass fill:#f96;
-
 ```
 
 </div>
