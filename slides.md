@@ -23,7 +23,7 @@ title: Dynamic Programming Optimization
 # Codeforces 1788E - Sum Over Zero
 
 <center>
-<img  src="Codeforces.png" height="600" width="600">
+<img  src="/Codeforces.png" height="600" width="600">
 </center>
 
 
@@ -32,7 +32,7 @@ title: Dynamic Programming Optimization
 # Codeforces 1788E - Sum Over Zero
 
 <center>
-<img  src="samples.png" height="600" width="600">
+<img  src="/samples.png" height="600" width="600">
 </center>
 
 ---
@@ -40,7 +40,7 @@ title: Dynamic Programming Optimization
 # Problem Visualization
 
 <center>
-<img  src="choices.png" height="600" width="600">
+<img  src="/choices.png" height="600" width="600">
 <br>
 There can be exponentially large number of sets to consider
 </center>
@@ -481,7 +481,7 @@ graph TD
 
 <v-clicks>
 
-<img  src="cool.avif" height="150" width="150">
+<img  src="/cool.avif" height="150" width="150">
 
 https://www.linkedin.com/in/nachiketkanore/
 
