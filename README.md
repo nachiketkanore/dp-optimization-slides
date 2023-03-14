@@ -1,22 +1,5 @@
-# simple-slidev-sample
-
-![](../../workflows/build/badge.svg) ![](../../workflows/release/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/5dddd2ae-56ca-4047-a4f7-147059bb96f7/deploy-status)](https://app.netlify.com/sites/pyohio2021-presentation/deploys)
-
-## Introduction
-
-Sample slides created by [Gregory M.
-Kapfhammer](https://www.gregorykapfhammer.com/) to illustrate the use of
-Slidev's features. These slides were created from other slides, that I used for
-teaching and research, that were created with tools like LaTeX and Beamer.
-
-## Installation
-
-To access the GitHub repository that contains the source code for these slides,
-please follow these
-[instructions](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository)
-provided by [GitHub](https://github.com/). Once you have cloned the repository
-to a directory on your computer, please change into it by typing the command `cd
-pyohio2021-presentation` from the directory where you clone the repository.
+# DP Opimization Slides for YouTube video
+![image](https://user-images.githubusercontent.com/44920607/225094358-17b0e64f-93ae-4251-b81a-238af11983bb.png)
 
 ## Commands
 
