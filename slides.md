@@ -2,356 +2,495 @@
 theme: ./simple
 class: text-center
 highlighter: prism
-colorSchema: 'light'
+colorSchema: light
 download: true
+monaco: true
 info: |
   ## Simple-slidev-sample
   Simple Slidev Sample
+title: Dynamic Programming Optimization
 ---
 
-# Simple Slidev Sample
+# Dynamic Programming Optimization
 
-## Slides that Illustrate Slidev's Features
+## Optimize Recurrence Relations
 
-**Gregory M. Kapfhammer**
+**Nachiket Kanore**
 
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 p-1 rounded cursor-pointer" hover="bg-black bg-opacity-30">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<a href="https://github.com/gkapfham/simple-slidev-sample" target="_blank" alt="GitHub"
-  class="abs-br m-6 text-xl icon-btn opacity-100 !border-none !hover:text-dark-500">
-  <carbon-logo-github />
-</a>
 
 ---
 
-# Technical Question
+# Codeforces 1788E - Sum Over Zero
 
+<center>
+<img  src="Codeforces.png" height="600" width="600">
+</center>
+
+
+---
+
+# Codeforces 1788E - Sum Over Zero
+
+<center>
+<img  src="samples.png" height="600" width="600">
+</center>
+
+---
+
+# Problem Visualization
+
+<center>
+<img  src="choices.png" height="600" width="600">
 <br>
-<br>
+There can be exponentially large number of sets to consider
+</center>
 
-> How do I connect mathematical terminology (e.g., *mapping*, *function*,
-> *number*, *sequence*, and *set*), to the implementation of Python
-> programs that declare and call functions and declare and manipulate
-> variables?
-
-<div class="absolute top-80 -left-10 px-40 text-center">
-
-Let's learn more about how the use of precise mathematical terms and concepts
-helps to effectively communicate and perform Python programming tasks! 🚀
-
-</div>
 
 ---
 
-# Hello World with Highlighting
+# Mathematical Representation
 
-```python {all|1|2-5|6|7-8|all}
-# declare multiple variables
-hello = "hello"
-world = "world"
-space = " "
-value = .50
-message = world + space + hello
-print(f"The message is: {message}")
-print(f"The value is: {value}")
-```
 
 <v-clicks>
 
-<div class="absolute top-100 text-5xl font-extrabold bold-text">
+-  Find maximum sum of lengths of disjoint subarrays each having sum greater than equal to 0
 
-<p class = "bold">
-  Can you predict the output of this program?
-</p>
+- $S$ is a set of disjoint subarrays to be considered, each subarray having $sum \geq 0$
 
-<p class = "bold">
-What is the purpose of <code>f"The message is: {message}"</code> ?
-</p>
+- $$f(S) = \sum_{[x,y] \in S} (y-x+1)$$
 
-</div>
+
+- We need to find the maximum value of $f(S)$ over all possible sets $S$
 
 </v-clicks>
+<!-- <v-clicks> -->
+<!-- </v-clicks> -->
 
 ---
 
-# Using a <code>mapper</code> with a Sequence
-
-<br>
-
-```python{all|1-3|4-9|10-12|all}
-def square(value: int):
-    return value * value
-
-def mapper(f, sequence):
-    result = (  )
-    for element in sequence:
-        result += ( f(element), )
-    return result
-
-squared_range = mappper(square, range(10))
-print(squared_range)
-
-```
-
----
-
-# Understanding the Monoid
+# Observations and Solutions
 
 <v-clicks>
 
-- A monoid is an ordered pair $(S, \otimes)$ for a set $S$ and any binary
-operator $\otimes$ that satisfies the following conditions:
+- There can be **exponentially** many choices to make
 
-    - **Type Preservation**: $\forall s_1, s_2 \in S$, $s_1 \otimes
-                  s_2 \in S$
+- Let's start with some simple `recursive brute force` solution
 
-    - **Associative Property**: $\forall s_1, s_2, s_3 \in S$, $(s_1
-                  \otimes s_2) \otimes s_3 = s_1 \otimes (s_2 \otimes s_3)$
+- Let's start constructing our subset of subarrays
 
-    - **Identity Element**: $\exists \epsilon \in S$, such that
-        $\forall s \in S, \epsilon \otimes s = s$ and
-        $s \otimes \epsilon = s$
+- We start from index 1
 
--   We often say that $S$ is a monoid under $\otimes$ with identity
-    $\epsilon$
+- Choices at each point $i$:
 
--   If this is confusing, a monoid is a generalization of strings and integers!
+  1. **Take the subarray starting at $i$**, can end anywhere at $j$, $i \leq j \leq N$ with the condition that sum of elements from i to j is $\geq 0$
 
--   If you know how strings behave in Python or Java then you understand the
-monoid --- monoid describes <q>string-like</q> structures!
+  2. **Dont' take this element in any subarray**, and move onto next index
+
 
 </v-clicks>
+<!-- TODO: <v-clicks> -->
+<!-- </v-clicks> -->
 
 ---
 
-# Average Computation with Multisets
+# Implementation:  Recursive Brute Force
 
 <style>
-p {
-  font-size: 25px;
+  code {
+    @apply text-1xl
+  }
+</style>
+
+```cpp{all|6-7|9-16|all}
+int go(int i) {
+  if (i > N)
+    return 0;
+  int ans = 0;
+
+  // Choice 1: Dont' consider A[i] in any subarray
+  ans = max(ans, go(i + 1));
+
+  // Choice 2: Consider A[i] in some subarray
+  for (int j = i; j <= N; j++) {
+
+    int subarray_sum = A[j] - A[i - 1]; // A is the pref array
+    if (subarray_sum >= 0) {
+      ans = max(ans, (j - i + 1) + go(j + 1));
+    }
+  }
+  return ans;
+}
+
+// Answer = go(1)
+
+```
+
+---
+
+
+# Memoization
+
+<style>
+  code {
+    @apply text-1xl
+  }
+</style>
+
+```cpp{all|4-6|all}
+int go(int i) {
+  if (i > N)
+    return 0;
+  int& ans = dp[i]; // dp array is filled with -1 initially
+  if (~ans) return ans;
+  ans = 0;
+  // Choice 1: Dont' consider A[i] in any subarray
+  ans = max(ans, go(i + 1));
+  // Choice 2: Consider A[i] in some subarray
+  for (int j = i; j <= N; j++) {
+    int subarray_sum = A[j] - A[i - 1];
+    if (subarray_sum >= 0) {
+      ans = max(ans, (j - i + 1) + go(j + 1));
+    }
+  }
+  return ans;
+}
+// Answer = go(1)
+
+```
+
+- Time Complexity of full solution will be $O(N^2)$
+
+---
+
+# Recurrence Relation
+
+<v-clicks>
+
+- Let's define $dp_i$ as the best answer we can find until index $i$
+
+- $dp_i = max_{1 \leq j \leq i}(dp_{j-1} + (i - j + 1)), dp_{i-1}$
+
+- for all $j \leq i$ such that $\sum_{k=j}^{k=i} A_i \geq 0$
+
+- Base conditions:
+    - $dp_0 = 0$
+
+- Answer = $dp_N$
+
+</v-clicks>
+
+---
+
+# Simplifying Recurrence Relation
+
+<v-clicks>
+
+- $dp_i = max_{j \leq i}(dp_{j-1} + (i - j + 1)), dp_{i-1}$
+
+- for all $j \leq i$ such that $\sum_{k=j}^{k=i} a_i \geq 0$
+
+- Let's denote $\sum_{k=j}^{k=i} a_i \geq 0$ by [$pref_i - pref_{j-1} \geq 0$] where $pref_i$ denotes the sum of first $i$ elements of array A
+
+- Now, the relation becomes:
+
+  - $dp_i = max_{j \leq i}(dp_{j-1} + (i - j + 1)), dp_{i-1}$
+
+  - for all $j \leq i$ such that $pref_i - pref_{j-1} \geq 0$
+
+  - or $pref_i \geq pref_{j-1}$
+
+
+</v-clicks>
+
+---
+
+# Simplifying Recurrence Relation
+
+
+<style>
+code {
+  @apply text-1xl
 }
 </style>
 
-<!--- Display all equations at the same time -->
 
-$$O = ((o_1, \ldots, o_n))$$
+- We arrived at:
 
-$$S = \sum_{o_i \in O} o_i$$
+    - $dp_i = max_{j \leq i}(dp_{j-1} + (i - j + 1)), dp_{i-1}$
 
-$$A = \frac{S}{|O|}$$
+    - such that $pref_i \geq pref_{j-1}$
 
-What is the meaning of $o_i \in O$?
+```cpp{all|3|4-5|7-12|14|all}
+for (int i = 1; i <= N; i++) {
+  cin >> A[i];
+  A[i] += A[i - 1]; // A becomes the pref array
+  // Choice 1: Don't consider A[i] in any subarray
+  dp[i] = max(dp[i], dp[i - 1]);
 
-Where does this exist in Python code?
-
-<p class = "bold">
-Explore the use of the <code>sum</code> function in Python!
-</p>
+  // Choice 2: Consider A[i] is some subarray starting at some j
+  for (int j = i; j >= 1; j--) {
+    if (A[i] - A[j - 1] >= 0) {
+      dp[i] = max(dp[i], (i - j + 1) + dp[j - 1]);
+    }
+  }
+}
+cout << dp[N];
+```
 
 ---
 
-# Average Computation with Multisets
+# Observations
+
+<v-clicks>
+
+- $dp_i = max_{j \leq i}(dp_{j-1} + (i - j + 1)), dp_{i-1}$
+
+- $dp_i = max_{j \leq i}(dp_{j-1} + (i) - (j-1)), dp_{i-1}$
+
+- $dp_i = (i) + max_{j \leq i}(dp_{j-1} - (j-1)), dp_{i-1}$
+
+- $dp_i = (i) + max_{id < i}(dp_{id} - (id)), dp_{i-1}$
+    - such that $pref_i \geq pref_{id} , id < i$
+
+- This recurrence is in `one-variable-form` now
+
+</v-clicks>
+
+---
+
+
+# Improvisation
+
+<v-clicks>
+
+- We keep storing this value: $dp_{(id)}-(id)$ as a single variable and use it for
+computation later
+
+- Since, we will be iterating over all $pref_{id}$ such that $pref_i \geq pref_{id} , id < i$, we will store the info:
+
+    - $[ pref_i, dp_i - i ]$ in some data structure for retrieval later
+
+    - Here, $pref_i$ will be our **KEY**
+
+    - and $dp_i - i$ will be our **VALUE**
+
+- Then, we will retrieve the best value to update our $dp_i$ with..
+
+- This needs to be stored after computing $dp_i$
+
+</v-clicks>
+
+---
+
+# Implementation
+
+<style>
+  code {
+    @apply text-1xl
+  }
+</style>
+
+```cpp{all|1-2|5|6-13|14-15|16|18|all}
+vector<pair<int, int>> my_data_structure;
+my_data_structure.push_back({ 0, 0 });
+for (int i = 1; i <= N; i++) {
+  cin >> A[i];
+  A[i] += A[i - 1]; // Prefix-sum array inplace
+  int best = -INF;
+  for (auto [key, value] : my_data_structure) {
+    if (key <= A[i]) {
+      best = max(best, value);
+    }
+  }
+  // Choice 1
+  dp[i] = max(dp[i], i + best);
+  // Choice 2
+  dp[i] = max(dp[i], dp[i - 1]);
+  my_data_structure.push_back(make_pair(A[i], dp[i] - i));
+}
+cout << dp[N];
+```
+
+---
+
+# How to retrieve faster?
 
 <style>
 p {
-  font-size: 25px;
+  font-size: 20px;
 }
 </style>
 
-<!--- Display each equation separately -->
-
 <v-clicks>
 
-$$O = ((o_1, \ldots, o_n))$$
+- Notice that we are iterating over all **keys below $A_i$
+that is the range $[-\infty, A_i]$**
 
-$$S = \sum_{o_i \in O} o_i$$
+- Hence, we need some data structure that can give the maximum value in the
+range $[-\infty, A_i]$ with the key $A_i$ on each iteration quickly
 
-$$A = \frac{S}{|O|}$$
+- What data structure can give you max value in a range faster?
+- And also support adding **keys**, both faster
 
-What is the meaning of $o_i \in O$?
+- `Segment trees`
 
-Where does this exist in Python code?
+- In this specific problem, I used `Implicit Segment Tree`
 
-<p class = "bold">
-Explore the use of the <code>sum</code> function in Python!
-</p>
+- Reason: **Keys** can get arbitrarily large and may not fit segment tree's index
+
+- `Implicit Segment Tree` can support arbitrarily large indices
 
 </v-clicks>
 
 ---
 
-# Summary of the <q>Abstraction Jumping</q>
+# Implicit Segment Trees: Node and constructor
 
--   What is the connection between the discrete mathematical structures
-    and the Python programs?
-
--   Connections between discrete mathematics and Python
-
-    -   **Generic file**: a sequence of sequences
-
-    -   **Names in the file**: a set of strings
-
-    -   **Emails in the file**: a set of ordered pairs forming a
-        relation
-
-    -   **Temperatures in the file**: a multiset of integers
-
--   When might the emails in the file be a mapping? When might the
-    temperatures in the file be a sequence?
-
+```cpp{1-5|6-10|all}
+struct node {
+  int mx;
+  node* left;
+  node* right;
+}
+node() {
+  mx = -INF;
+  left = NULL;
+  right = NULL;
+}
+```
 ---
 
-# Simpler Slide with Bulleted List
 
-<v-clicks>
+# Implicit Segment Trees:  Update
 
-- Item 1
+<style>
+  code {
+    @apply text-1xl
+  }
+</style>
 
-  - Sub list
-  - Sub list again
+```cpp{1|2|3-14|5-8|9-12|15|all}
+node* update(int l, int r, int id, int val) {
+  mx = max(mx, val);
+  if (l < r) {
+    int mid = (l + r) >> 1;
+    if (id <= mid) {
+      if (left == NULL)
+        left = new node();
+      left = left->update(l, mid, id, val);
+    } else {
+      if (right == NULL)
+        right = new node();
+      right = right->update(mid+1, r, id, val);
+    }
+  }
+  return this;
+}
 
-- Item 2
-- Item 3
-- Item 4
-
-</v-clicks>
-
-<div class="grid grid-cols-2 gap-x-1">
-
-<uim-rocket class="text-8xl text-orange-400" />
-
-<arrow x1="180" y1="420" x2="480" y2="420" color="#1c1c1c" width="3" arrowSize="1" />
-
-<uim-rocket class="text-8xl text-orange-400" />
-
-</div>
-
+```
 ---
-class: text-center
----
 
-# Simple slid with some math
-
-<v-click>
-
-We often say that "$S$ is a monoid under $\otimes$ with identity $\epsilon$"
-
-</v-click>
-
-<v-click>
-
-```mermaid {scale: 1.0}
-graph LR
-
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
+# Implicit Segment Trees: Query
+```cpp{1|2|3-6|4|8-9|10-11|all}
+void get_max(int tl, int tr, int ql, int qr) {
+  if (tl > qr || tr < ql) return ;
+  if (ql <= tl && tr <= qr) {
+    best_mx = max(best_mx, mx);
+    return;
+  }
+  int mid = (tl + tr) / 2;
+  if (left != NULL)
+    left->get_max(tl, mid, ql, qr);
+  if (right != NULL)
+    right->get_max(mid+1, tr, ql, qr);
+}
 ```
 
-</v-click>
-
 ---
 
-# Sample Diagrams in Mermaid
+# Implicit Segment Trees: Initialization
+```cpp{1|3|5|7|9}
+const int OFFSET = 1e15;
 
-<div class="grid grid-cols-2 gap-x-1">
+const int INF = 1e16;
 
+node* root = new root();
 
-```mermaid {scale: 1.0, fontSize: 10}
-graph LR
-    id1(Start)-->id2(Stop)
-    style id1 fill:#f9f,stroke:#333,stroke-width:4px,font size: 1px
-    style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+root = root->update(0, INF, A[i] + OFFSET, dp[i] - i);
+
+root->get_max(0 , INF, 0, A[i] + OFFSET);
+
 ```
 
-```mermaid {scale: 1.0}
-graph LR
-    id1(Origination)-->id2(Entrance Examination)
-    id1(Entrance Examination)-->id2(Examination)
-    style id1 fill:#f9f,stroke:#333,stroke-width:4px
-    style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
-```
+We use the `OFFSET` to make sure the query ranges
+for segment tree are $\geq 0$
+---
 
+# Problem Solving Workflow
+
+<center>
 ```mermaid {scale: 1.0}
-graph LR
-    A["Something"]:::someclass --> B
-    B --> C
-    A --> C
-    D --> C
+graph TD
+    A["Brute Force Recursive Solution"] --> B["Derive Recurrence Relation"]
+    B --> C["Find Patterns"]
+    C --> D["Optimize using some data structure or algorithms"]
+    D --> E["Implementation"]
     classDef someclass fill:#f96;
 ```
+</center>
+---
 
-</div>
+# Final Code Walkthrough
+
+- https://codeforces.com/contest/1788/submission/197351413
 
 ---
 
-# Additional Diagram Slide
+# Better Solution
 
-<div class="absolute top-30 left-40">
+<v-clicks>
 
-```mermaid {scale: 1.0}
-graph LR
-    SensorOne:::process --> SequenceOne("Data Sequence"):::process
-    SequenceOne --> AnalysisOne["Data Analysis"]:::process
-    AnalysisOne --> AverageOne("Computed Average"):::process
-    AnalysisOne --> GraphOne("Data Graph"):::process
-    classDef process fill:#9E9E9E,stroke-width:2px,stroke:#212121;
-```
+- Without using Implicit Segment Trees
 
-</div>
+- `pref` array is used only to compare which value is small or large
 
-<div class="absolute top-80 left-20">
+- We don't need to store those large **keys**
 
-- What happens when I am typing a long message and I see some $f(x)$
+- `Coordinate Compression`
 
-</div>
+- Compress `pref` values in the range $[1, N]$
+
+- Then use them as **keys** in `Segment Tree` or `Fenwick Tree`
+
+</v-clicks>
 
 ---
 
-# Separate Diagram Slide Again
+# Better Solution: Walkthrough
 
-<div class="container mx-auto px-25 py-5">
-
-```mermaid {scale: 1.0}
-graph LR
-    Sensor:::process --> Sequence("Data Sequence"):::process
-    Sequence --> Analysis["Data Analysis"]:::process
-    Analysis --> Average("Computed Average"):::process
-    Analysis --> Graph("Data Graph"):::process
-    classDef process fill:#9E9E9E,stroke-width:2px,stroke:#212121;
-```
-
-</div>
-
-<div class="absolute top-80 left-20">
-
-- What happens when I am typing a long message and I see some $f(x)$
-
-</div>
+- https://codeforces.com/contest/1788/submission/197354030
 
 ---
 
-# Separate Diagram Slide Last
+# Code Comparison
 
-<div class="absolute top-30 left-40">
 
-```mermaid {scale: 1.0}
-graph LR
-    Sensor:::process --> Sequence("Data Sequence"):::process
-    Sequence --> Analysis["Data Analysis"]:::process
-    Analysis --> Average("Computed Average"):::process
-    Analysis --> Graph("Data Graph"):::process
-    classDef process fill:#9E9E9E,stroke-width:2px,stroke:#212121;
-```
+---
 
-</div>
+# Thank You
 
-<div class="absolute top-80 left-20">
+<v-clicks>
 
-- What happens when I am typing a long message and I see some $f(x)$
+<img  src="cool.avif" height="150" width="150">
 
-</div>
+https://www.linkedin.com/in/nachiketkanore/
+
+https://github.com/nachiketkanore/
+
+https://twitter.com/nachiket_kanore
+
+Like and Share
+
+Subscribe for more content
+
+</v-clicks>
