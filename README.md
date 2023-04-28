@@ -1,4 +1,4 @@
-# DP Optimization Slides for a YouTube tutorial
+# DP Optimization Slides for a YouTube tutorial ![YouTube Video](https://youtu.be/RBXcQtp-TOU)
 ![image](https://user-images.githubusercontent.com/44920607/225094358-17b0e64f-93ae-4251-b81a-238af11983bb.png)
 
 ## Commands
